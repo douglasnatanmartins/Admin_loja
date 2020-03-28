@@ -4,6 +4,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gerenciadorloja/blocs/orders_bloc.dart';
 import 'package:gerenciadorloja/blocs/user_bloc.dart';
 import 'package:gerenciadorloja/tabs/orders_tab.dart';
+import 'package:gerenciadorloja/tabs/products_tab.dart';
 import 'package:gerenciadorloja/tabs/users_tab.dart';
 
 
@@ -69,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text("Pedidos")
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.format_list_numbered),
+                icon: Icon(Icons.library_books),
                 title: Text("Produtos")
             ),
             BottomNavigationBarItem(
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 UsersTab(),
                 OrdersTab(),
-                Container(color: Colors.green),
+               ProductsTab(),
                 Container(color: Colors.yellow),
               ],
             ),
