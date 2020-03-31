@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:gerenciadorloja/validators/login_validators.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -24,6 +25,7 @@ class LoginBloc extends BlocBase with LoginValidators {
   );
 
 
+
   Function(String)get changeEmail => _emailController.sink.add;
   Function(String)get changePassword => _passwordController.sink.add;
 
@@ -31,6 +33,9 @@ class LoginBloc extends BlocBase with LoginValidators {
 
   LoginBloc(){
     _streamSubscription = FirebaseAuth.instance.onAuthStateChanged.listen((user) async {
+      if(user == null){
+        FirebaseAuth.instance.currentUser();
+      }
       if(user != null){
         if(await verifiPrivileges(user)){
           _stateController.add(LoginState.SUCCESS);
@@ -42,13 +47,12 @@ class LoginBloc extends BlocBase with LoginValidators {
       }else {
         _stateController.add(LoginState.IDLE);
       }
-
     }
     );
   }
 
-  bool isLoggedIn(){
-    return FirebaseUser != null;
+  void signOut() async {
+    return await FirebaseAuth.instance.signOut();
   }
 
   Future<FirebaseUser> getCurrentUser() async {
@@ -83,9 +87,6 @@ class LoginBloc extends BlocBase with LoginValidators {
       return false;
     });
   }
-
-
-
 
   @override
   void dispose() {

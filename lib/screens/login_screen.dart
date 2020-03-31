@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _loginBloc.outState.listen((state) {
       switch (state) {
         case LoginState.SUCCESS:
+          Center(child: CircularProgressIndicator(),);
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => HomeScreen()));
           break;
@@ -60,8 +61,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       valueColor: AlwaysStoppedAnimation(Colors.cyanAccent),
                     ),
                   );
-                case LoginState.FAIL:
                 case LoginState.SUCCESS:
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.cyanAccent),
+                    ),
+                  );
+                case LoginState.FAIL:
                 case LoginState.IDLE:
                   return Stack(
                     alignment: Alignment.center,

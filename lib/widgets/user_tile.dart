@@ -19,7 +19,7 @@ class UserTile extends StatelessWidget {
         style: _textStyle
       ),
       subtitle: Text(
-          user["email"],
+          user["phone"],
           style: _textStyle
       ),
       trailing: Column(
