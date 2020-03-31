@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gerenciadorloja/blocs/login_bloc.dart';
 import 'package:gerenciadorloja/screens/login_screen.dart';
+import 'package:gerenciadorloja/tabs/novidades.dart';
 
 class SettingsTab extends StatelessWidget {
 
@@ -12,17 +13,12 @@ class SettingsTab extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: Colors.purple,
-        title: Column(
-          children: <Widget>[
-            SafeArea(
-              child: Text(
-                  "Configurações",
-              ),
-            ),
-          ],
-        )
+        title: Text(
+          "Configurações",
+        ),
       ),
       body: Card(
         elevation: 1,
@@ -49,19 +45,21 @@ class SettingsTab extends StatelessWidget {
                   ),
                 ],
               ),
-              Divider(),
+              Divider(color: Colors.grey[500],),
               Row(
                 children: <Widget>[
 
-                  Icon(Icons.library_books, size: 25, color: Colors.purple,),
+                  Icon(Icons.playlist_add, size: 25, color: Colors.purple,),
                   FlatButton(
-                    child: Text("", style: TextStyle(
-                        fontSize: 25,
+                    child: Text("Novidades", style: TextStyle(
+                        fontSize: 23,
                         color: Colors.purple,
                         fontWeight: FontWeight.w500
                     ),),
                     onPressed: (){
-                      FirebaseAuth.instance.signOut();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => NovidadesTab()
+                        ));
                     },
                   ),
                   Divider(),

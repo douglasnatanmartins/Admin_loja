@@ -48,19 +48,20 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Colors.purple,
-          primaryColor: Colors.grey[800],
+          primaryColor: Colors.green[800],
           textTheme: Theme.of(context).textTheme.copyWith(
-            caption: TextStyle(color: Colors.white54)
+            caption: TextStyle(
+                color: Colors.black)
           )
         ),
         child: BottomNavigationBar(
           currentIndex: _page,
           selectedItemColor: Colors.white,
-          onTap: (p){
+          onTap: (page){
             _pageController.animateToPage(
-                p,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.ease);
+                page,
+                duration: Duration(milliseconds: 100),
+                curve: Curves.fastOutSlowIn);
           },
           items: [
             BottomNavigationBarItem(
